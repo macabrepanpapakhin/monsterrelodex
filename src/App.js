@@ -43,6 +43,7 @@ class App extends Component {
     console.log("rendering in main");
     return (
       <div className="App">
+        <h1 className="app-title">Monster Rolodex</h1>
         <SearchBox
           className="search-box"
           onSearchChange={onSearchChange}
