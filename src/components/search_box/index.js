@@ -4,7 +4,7 @@ const Index = ({ onSearchChange }) => {
   return (
     <div>
       <input
-        className="search-box"
+        className="search-box-please"
         type="search"
         placeholder="search monsters"
         onChange={onSearchChange}

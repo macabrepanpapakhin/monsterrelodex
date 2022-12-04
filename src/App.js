@@ -1,9 +1,10 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Component } from "react";
-import Index from "./components/search_box";
-
 import CardList from "./components/card_list/card-list.component";
+import SearchBox from "./components/search_box/search_box.component";
+import "./components/search_box/search_box.styles.css";
+import "./components/card_list/card.styles.css";
+import "./components/card_list/card_list.styles.css";
 class App extends Component {
   constructor() {
     super();
@@ -22,7 +23,7 @@ class App extends Component {
             return { monsters: users };
           },
           () => {
-            console.log(this.state);
+            //  console.log(this.state);
           }
         )
       );
@@ -39,17 +40,15 @@ class App extends Component {
     const filterdMonsters = monsters.filter((monster) =>
       monster.name.toLowerCase().includes(searchString)
     );
+    console.log("rendering in main");
     return (
       <div className="App">
-        <Index onSearchChange={onSearchChange} />
-        {filterdMonsters.map((monster) => {
-          return (
-            // <div key={monster.name}>
-            //   <h1>{monster.name}</h1>
-            // </div>
-            <CardList key={monster.id} monster={monster} />
-          );
-        })}
+        <SearchBox
+          className="search-box"
+          onSearchChange={onSearchChange}
+          placeholder="search monsters"
+        />
+        <CardList monsters={filterdMonsters} />
       </div>
     );
   }
