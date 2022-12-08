@@ -48,6 +48,7 @@ import { useState, useEffect } from "react";
 const App = () => {
   const [searchString, setSearchString] = useState("");
   const [monsters, setMonsters] = useState([]);
+  const [filterdMonsters, setFilterdMonsters] = useState([]);
   const onSearchChange = (event) => {
     const searchString1 = event.target.value.toLowerCase();
     setSearchString(searchString1);
@@ -57,9 +58,15 @@ const App = () => {
       .then((response) => response.json())
       .then((users) => setMonsters(users));
   }, []);
-  const filterdMonsters = monsters.filter((monster) =>
-    monster.name.toLowerCase().includes(searchString)
-  );
+
+  useEffect(() => {
+    const f = monsters.filter((monster) =>
+      monster.name.toLowerCase().includes(searchString)
+    );
+    console.log("effect fired");
+    setFilterdMonsters(f);
+  }, [monsters, searchString]);
+
   return (
     <div className="App">
       <h1 className="app-title">Monster Rolodex</h1>
